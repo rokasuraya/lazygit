@@ -71,6 +71,9 @@ func main() {
 	}()
 
 	if err := lazygitApp.Run(); err != nil {
+		// Print a newline before the fatal error so it doesn't get mixed up
+		// with any terminal output from the TUI.
+		fmt.Fprintln(os.Stderr)
 		log.Fatal(err)
 	}
 }
