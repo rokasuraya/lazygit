@@ -34,7 +34,7 @@ func main() {
 		Commit:    commitSHA,
 	}
 
-	// Using my personal fork URL so update checks point to the right repo.
+	// Using upstream repo URL for update checks.
 	appConfig, err := config.NewAppConfig(
 		"lazygit",
 		version,
@@ -48,7 +48,11 @@ func main() {
 		log.Fatal(fmt.Sprintf("Error building app config: %v", err))
 	}
 
-	logger := logs.Global.WithField("version", version)
+	// Include the build date in the log context for easier debugging of
+	// issues that may be version-specific.
+	logger := logs.Global.
+		WithField("version", version).
+		WithField("buildDate", buildDate)
 
 	lazygitApp, err := app.NewApp(appConfig, logger)
 	if err != nil {
