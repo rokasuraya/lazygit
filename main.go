@@ -34,6 +34,7 @@ func main() {
 		Commit:    commitSHA,
 	}
 
+	// Using my personal fork URL so update checks point to the right repo.
 	appConfig, err := config.NewAppConfig(
 		"lazygit",
 		version,
