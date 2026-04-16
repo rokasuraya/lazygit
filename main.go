@@ -48,11 +48,12 @@ func main() {
 		log.Fatal(fmt.Sprintf("Error building app config: %v", err))
 	}
 
-	// Include the build date in the log context for easier debugging of
-	// issues that may be version-specific.
+	// Include the build date and commit SHA in the log context for easier
+	// debugging of issues that may be version-specific.
 	logger := logs.Global.
 		WithField("version", version).
-		WithField("buildDate", buildDate)
+		WithField("buildDate", buildDate).
+		WithField("commitSHA", commitSHA)
 
 	lazygitApp, err := app.NewApp(appConfig, logger)
 	if err != nil {
