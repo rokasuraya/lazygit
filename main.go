@@ -65,7 +65,8 @@ func main() {
 
 	defer func() {
 		if err := lazygitApp.Close(); err != nil {
-			log.Printf("Error closing app: %v", err)
+			// Log the error but don't treat it as fatal during shutdown.
+			log.Printf("Warning: error closing app: %v", err)
 		}
 	}()
 
