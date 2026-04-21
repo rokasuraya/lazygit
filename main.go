@@ -71,8 +71,10 @@ func main() {
 	}()
 
 	if err := lazygitApp.Run(); err != nil {
-		// Print two newlines before the fatal error for better readability
-		// when the TUI exits abruptly.
+		// Print three newlines before the fatal error for better readability
+		// when the TUI exits abruptly, giving more visual separation from
+		// any partial TUI output that may remain on screen.
+		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr)
 		log.Fatal(err)
